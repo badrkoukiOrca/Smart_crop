@@ -8,11 +8,7 @@
 
 package me.pqpo.smartcropper;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -24,8 +20,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -42,16 +36,17 @@ public class Camera_capture extends AppCompatActivity {
     private LinearLayout cameraPreview;
     private boolean cameraFront = false;
     public static Bitmap bitmap = null;
-    public boolean executeresume = false ;
+    public boolean executeresume = false;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_layout);
-        cameraPreview = (LinearLayout) findViewById(R.id.cPreview);
+        cameraPreview = findViewById(R.id.cPreview);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         myContext = this;
-        capture = (Button) findViewById(R.id.btnCam);
+        capture = findViewById(R.id.btnCam);
         capture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +54,7 @@ public class Camera_capture extends AppCompatActivity {
             }
         });
 
-        switchCamera = (Button) findViewById(R.id.btnSwitch);
+        switchCamera = findViewById(R.id.btnSwitch);
         switchCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,15 +71,15 @@ public class Camera_capture extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
-            }else{
-                mCamera =  Camera.open();
+            } else {
+                mCamera = Camera.open();
                 mCamera.setDisplayOrientation(90);
                 mPreview = new CameraPreview(myContext, mCamera);
                 cameraPreview.addView(mPreview);
                 mCamera.startPreview();
             }
-        }else{
-            mCamera =  Camera.open();
+        } else {
+            mCamera = Camera.open();
             mCamera.setDisplayOrientation(90);
             mPreview = new CameraPreview(myContext, mCamera);
             cameraPreview.addView(mPreview);
@@ -98,7 +93,7 @@ public class Camera_capture extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == MY_CAMERA_REQUEST_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                mCamera =  Camera.open();
+                mCamera = Camera.open();
                 mCamera.setDisplayOrientation(90);
                 mPreview = new CameraPreview(myContext, mCamera);
                 cameraPreview.addView(mPreview);
@@ -148,17 +143,17 @@ public class Camera_capture extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
-        if(executeresume==false){
-            executeresume = true ;
-        }else{
-            if(mCamera == null) {
+        if (executeresume == false) {
+            executeresume = true;
+        } else {
+            if (mCamera == null) {
                 mCamera = Camera.open();
                 mCamera.setDisplayOrientation(90);
                 mPicture = getPictureCallback();
                 mPreview.refreshCamera(mCamera);
                 Log.d("nu", "null");
-            }else {
-                Log.d("nu","no null");
+            } else {
+                Log.d("nu", "no null");
             }
         }
 
@@ -211,29 +206,17 @@ public class Camera_capture extends AppCompatActivity {
     }
 
     public void takePicture() {
-        //Log.i(TAG, "Tacking picture");
         Camera.PictureCallback callback = new Camera.PictureCallback() {
             //private String mPictureFileName = fileName;
 
             @Override
             public void onPictureTaken(byte[] data, Camera camera) {
-                //Log.i(TAG, "Saving a bitmap to file");
-                Bitmap picture = BitmapFactory.decodeByteArray(data, 0, data.length);
-                bitmap = picture;
-                Intent returnIntent = new Intent(Camera_capture.this,CropActivity.class);
+                bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                Intent returnIntent = new Intent(Camera_capture.this, CropActivity.class);
                 startActivity(returnIntent);
-                try {
-
-                    //setResult(Activity.RESULT_OK,returnIntent);
-                    finish();
-                    /*bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-                    finish();*/
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                finish();
             }
         };
-
         mCamera.takePicture(null, null, callback);
     }
 
@@ -243,8 +226,6 @@ public class Camera_capture extends AppCompatActivity {
             public void onPictureTaken(byte[] data, Camera camera) {
                 bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                 finish();
-                //Intent intent = new Intent(Camera_capture.this,PictureActivity.class);
-                //startActivity(intent);
             }
         };
         return picture;

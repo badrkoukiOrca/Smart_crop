@@ -7,7 +7,7 @@
   ~
   -->
 
-<paths xmlns:android="http://schemas.android.com/apk/res/android">
+<paths>
     <external-path
         name="external_storage_root"
         path="." />
