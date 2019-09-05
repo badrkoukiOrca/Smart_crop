@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2019 by Kouki Badr
+ * All rights reserved.
+ *
+ * https://kbadr.github.io/
+ *
+ */
+
 package me.pqpo.smartcropperlib;
 
 import android.content.Context;
@@ -7,10 +15,6 @@ import android.graphics.Point;
 import java.io.IOException;
 
 import me.pqpo.smartcropperlib.utils.CropUtils;
-
-/**
- * Created by qiulinmin on 8/1/17.
- */
 
 public class SmartCropper {
 
@@ -28,11 +32,7 @@ public class SmartCropper {
         }
     }
 
-    /**
-     *  输入图片扫描边框顶点
-     * @param srcBmp 扫描图片
-     * @return 返回顶点数组，以 左上，右上，右下，左下排序
-     */
+
     public static Point[] scan(Bitmap srcBmp) {
         if (srcBmp == null) {
             throw new IllegalArgumentException("srcBmp cannot be null");
@@ -48,12 +48,7 @@ public class SmartCropper {
         return outPoints;
     }
 
-    /**
-     * 裁剪图片
-     * @param srcBmp 待裁剪图片
-     * @param cropPoints 裁剪区域顶点，顶点坐标以图片大小为准
-     * @return 返回裁剪后的图片
-     */
+
     public static Bitmap crop(Bitmap srcBmp, Point[] cropPoints) {
         if (srcBmp == null || cropPoints == null) {
             throw new IllegalArgumentException("srcBmp and cropPoints cannot be null");

@@ -1,5 +1,8 @@
 /*
- * Copyright (c) 2019. This code is ceated and edited by KBadr*Tunisia
+ * Copyright (c) 2019 by Kouki Badr
+ * All rights reserved.
+ *
+ * https://kbadr.github.io/
  *
  */
 

@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2019 by Kouki Badr
+ * All rights reserved.
+ *
+ * https://kbadr.github.io/
+ *
+ */
+
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.pqpo'

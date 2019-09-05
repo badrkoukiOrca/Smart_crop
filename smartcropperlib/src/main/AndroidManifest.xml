@@ -1,3 +1,11 @@
+<!--
+  ~ Copyright (c) 2019 by Kouki Badr
+  ~ All rights reserved.
+  ~
+  ~ https://kbadr.github.io/
+  ~
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="me.pqpo.smartcropperlib">
 

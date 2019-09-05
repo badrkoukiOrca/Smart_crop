@@ -1,10 +1,15 @@
+/*
+ * Copyright (c) 2019 by Kouki Badr
+ * All rights reserved.
+ *
+ * https://kbadr.github.io/
+ *
+ */
+
 package me.pqpo.smartcropperlib.utils;
 
 import android.graphics.Point;
 
-/**
- * Created by qiulinmin on 8/3/17.
- */
 
 public class CropUtils {
 
